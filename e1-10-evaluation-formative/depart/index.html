@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>e1-10 — L’atelier des 30 tours</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="sky" aria-hidden="true">
+    <span class="glyph g1">{</span>
+    <span class="glyph g2">}</span>
+    <span class="glyph g3">;</span>
+    <span class="glyph g4">( )</span>
+    <span class="glyph g5">n</span>
+    <span class="glyph g6">#</span>
+    <span class="box-float">boîte</span>
+  </div>
+  <header>
+    <span class="badge-tour">Fiche e1-10 · M291</span>
+    <span class="badge-atelier">L’atelier des 30 tours</span>
+  </header>
+  <main>
+    <section id="vue-intro">
+      <p class="kicker">Évaluation formative · non notée</p>
+      <h1>30 tours dans la salle des machines</h1>
+      <p class="lead">Trois semaines sur l’établi : le classeur GitHub, le kit d’IA, et le réflexe de lire avant d’accepter. Ici, certains tours ont un vrai bout de code. Vous pouvez le <strong>lancer</strong> — l’écran et la console de l’atelier répondent. Après validation, le corrigé rejoue le résultat et l’explique.</p>
+      <div class="machines" aria-hidden="true">
+        <div class="machine"><span class="ico">▣</span><strong>Boîte</strong><em>variable</em></div>
+        <div class="machine"><span class="ico">⚙</span><strong>Machine</strong><em>fonction</em></div>
+        <div class="machine"><span class="ico">🔔</span><strong>Sonnette</strong><em>événement</em></div>
+      </div>
+      <div class="card intro-card">
+        <p>Une question à la fois. Vous cochez, vous validez, <strong>ensuite</strong> la bonne case s’allume et l’explication arrive. Pas d’IA pour répondre.</p>
+        <ul class="intro-list">
+          <li>Sur un tour « code » : lisez, choisissez, lancez si vous voulez. Le résultat officiel est aussi dans le corrigé.</li>
+          <li>N’ouvrez pas <code>js/questions.js</code> avant d’avoir fini.</li>
+          <li>Dix tours GitHub, dix IA, dix lecture de code.</li>
+        </ul>
+        <button type="button" id="commencer">Entrer dans l’atelier</button>
+      </div>
+    </section>
+
+    <section id="vue-quiz" class="hidden">
+      <p class="progress">
+        <span id="compteur">Tour 1 / 30</span>
+        <span id="theme"></span>
+      </p>
+      <div class="bar"><span id="barre"></span></div>
+      <div class="card quiz-card">
+        <h2 class="question" id="question"></h2>
+        <div id="lab-slot"></div>
+        <fieldset>
+          <legend>Choix</legend>
+          <div id="choix"></div>
+        </fieldset>
+        <div class="row">
+          <button type="button" id="valider" disabled>Valider cette réponse</button>
+          <button type="button" class="ghost hidden" id="suivante">Tour suivant</button>
+        </div>
+        <div id="explique" class="explain hidden"></div>
+      </div>
+    </section>
+
+    <section id="vue-fin" class="hidden">
+      <p class="kicker">Fin de service</p>
+      <h1>Bilan de l’atelier</h1>
+      <p class="score" id="score">0 / 30</p>
+      <p class="lead" id="phrase-score"></p>
+      <p class="muted">Les tours manqués ont un fond rose. Relisez, relancez le code s’il y en a un, puis recommencez si vous voulez.</p>
+      <div class="row">
+        <button type="button" id="recommencer">Recommencer les 30 tours</button>
+      </div>
+      <div class="review" id="revue"></div>
+    </section>
+  </main>
+  <div id="confetti" aria-hidden="true"></div>
+  <script src="js/questions.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
