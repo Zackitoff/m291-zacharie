@@ -34,19 +34,71 @@ Un formulaire à 15 champs juste pour ajouter un set, ou une app qui rame sur t�
 
 **Tâche :** Ajouter un set à sa collection et le marquer à vendre avec un prix
 
+**Déclencheur :** Noa vient de recevoir un nouveau set, ou veut poster une annonce sur Ricardo.ch et a besoin de retrouver le prix estimé
+
 **Début :** la personne ouvre Spinji Stock sur l'écran d'accueil (liste de sa collection)
 
 **Fin réussie :** la personne a une nouvelle fiche visible dans sa liste, statut « à vendre » et prix affichés
 
-## Chemin
+## Chemin détaillé
 
-1. Ouvre l'app → voit sa liste de fiches
-2. Clique sur « + Ajouter »
-3. Remplit le nom du set, l'année, l'état
-4. Choisit le statut « à vendre » et entre un prix
-5. Clique sur « Enregistrer »
-6. Revient à la liste, la nouvelle fiche apparaît en haut avec un badge « à vendre »
+**Écran 1 — Liste de la collection**
 
-## Variante d'échec (optionnel)
+1. Noa ouvre l'app → écran d'accueil avec la liste de ses fiches (vignette, nom du set, statut)
+2. Repère le bouton flottant « + Ajouter » en bas à droite
+3. Appuie sur « + Ajouter »
 
-Si le nom du set est vide, l'écran affiche « Donne au moins un nom à ton set » et bloque l'enregistrement.
+**Écran 2 — Formulaire d'ajout**
+
+4. L'app affiche un formulaire court, pensé pour être rempli en quelques secondes sur téléphone :
+   - Nom du set (champ texte, obligatoire)
+   - Année (champ numérique, optionnel)
+   - État (menu déroulant : Neuf / Bon état / Usé)
+5. Noa remplit le nom du set (ex. « 71797 Le dragon doré de Lloyd ») et sélectionne l'état
+6. Une section « Statut » propose deux boutons : « Dans ma collection » / « À vendre »
+7. Noa appuie sur « À vendre »
+8. Un champ « Prix estimé (CHF) » apparaît dynamiquement sous le statut
+9. Noa entre le prix (ex. 45)
+
+**Validation**
+
+10. Noa appuie sur « Enregistrer »
+11. L'app vérifie que le nom du set n'est pas vide
+    - Si vide → voir *Variante d'échec* ci-dessous
+    - Si prix vide alors que statut = « à vendre » → l'app affiche un message doux « Ajoute un prix pour que ta fiche soit complète » mais autorise quand même l'enregistrement (le prix pourra être ajouté plus tard)
+
+**Écran 3 — Retour à la liste**
+
+12. L'app enregistre la fiche et revient automatiquement à l'écran d'accueil
+13. La nouvelle fiche apparaît en haut de la liste avec :
+    - un badge « à vendre » (couleur distincte, ex. orange)
+    - le prix affiché à côté du nom
+14. Une brève confirmation visuelle (ex. toast « Fiche ajoutée ») confirme l'action sans bloquer l'écran
+
+## Variante d'échec — nom du set vide
+
+Si Noa appuie sur « Enregistrer » sans avoir rempli le nom du set :
+
+- Le champ « Nom du set » est mis en évidence (bordure rouge)
+- Un message s'affiche juste sous le champ : « Donne au moins un nom à ton set »
+- L'enregistrement est bloqué, aucune fiche n'est créée
+- Le reste du formulaire (année, état, statut, prix déjà saisis) reste rempli — Noa n'a pas à tout recommencer
+
+## Variante — abandon en cours de route
+
+Si Noa quitte le formulaire avant d'enregistrer (bouton retour) :
+
+- L'app demande une confirmation légère : « Abandonner cette fiche ? »
+- Si confirmé, retour à la liste sans rien enregistrer
+- Si annulé, Noa reste sur le formulaire avec ses données intactes
+
+## Chemin alternatif — changer le statut d'une fiche existante
+
+Comme la tâche n°1 doit aussi couvrir le changement de statut d'un set déjà catalogué :
+
+1. Depuis la liste, Noa appuie sur une fiche existante (statut « dans ma collection »)
+2. La fiche s'ouvre en mode détail/édition
+3. Noa appuie sur « À vendre » dans la section statut
+4. Le champ prix apparaît, Noa entre un montant
+5. Appuie sur « Enregistrer »
+6. Retour à la liste, la fiche est remontée en haut avec le badge « à vendre » mis à jour
