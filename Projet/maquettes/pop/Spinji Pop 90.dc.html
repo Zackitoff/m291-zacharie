@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet><link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=M+PLUS+Rounded+1c:wght@500;700;800&display=swap" rel="stylesheet"><style>body{margin:0}a{color:oklch(0.52 0.21 27)}a:hover{color:oklch(0.24 0.06 265)}input::placeholder,textarea::placeholder{color:oklch(0.5 0.03 265)}*{scrollbar-width:thin;scrollbar-color:oklch(0.24 0.06 265) transparent}</style></helmet>
+<div style="position:relative; width:100%; height:100%; min-height:560px; display:flex; flex-direction:column; overflow:hidden; background:oklch(0.95 0.03 88); color:oklch(0.24 0.06 265); font-family:'M PLUS Rounded 1c', sans-serif">
+
+  <header style="flex:none; background:oklch(0.52 0.21 27); color:oklch(0.99 0.01 90)">
+    <div style="padding:18px 18px 16px; width:100%; max-width:1120px; margin:0 auto; box-sizing:border-box; display:flex; flex-direction:column; gap:14px">
+      <div style="display:flex; align-items:flex-end; gap:10px">
+        <div style="flex:1; min-width:0; display:flex; flex-direction:column; gap:3px">
+          <span style="font:800 12px 'M PLUS Rounded 1c', sans-serif; letter-spacing:0.22em">{{ titleJp }}</span>
+          <h1 style="margin:0; font:400 27px/1.05 'Dela Gothic One', sans-serif; text-shadow:3px 3px 0 oklch(0.24 0.06 265)">{{ title }}</h1>
+        </div>
+        <span style="flex:none; font:800 13px 'M PLUS Rounded 1c', sans-serif; background:oklch(0.88 0.15 92); color:oklch(0.24 0.06 265); border:2.5px solid oklch(0.24 0.06 265); padding:4px 10px; border-radius:999px">{{ countLabel }}</span>
+      </div>
+      <sc-if value="{{ isList }}" hint-placeholder-val="{{ true }}">
+        <div style="display:flex; gap:10px">
+          <label style="flex:1; min-width:0; display:flex; align-items:center; gap:8px; height:46px; padding:0 12px; background:oklch(0.99 0.01 90); border:2.5px solid oklch(0.24 0.06 265); border-radius:12px; box-shadow:3px 3px 0 oklch(0.24 0.06 265)">
+            <svg width="17" height="17" viewBox="0 0 20 20" fill="none" stroke="oklch(0.24 0.06 265)" stroke-width="2.6" stroke-linecap="round" style="flex:none"><circle cx="8.5" cy="8.5" r="6"></circle><line x1="13" y1="13" x2="18" y2="18"></line></svg>
+            <input value="{{ query }}" onChange="{{ onQuery }}" placeholder="Rechercher une minifig" style="flex:1; min-width:0; height:100%; border:none; outline:none; background:transparent; color:oklch(0.24 0.06 265); font:700 15px 'M PLUS Rounded 1c', sans-serif">
+            <sc-if value="{{ hasQuery }}"><button onClick="{{ clearQuery }}" aria-label="Effacer" style="flex:none; width:30px; height:30px; border-radius:999px; border:none; background:oklch(0.24 0.06 265); color:oklch(0.99 0.01 90); font-size:16px; cursor:pointer">×</button></sc-if>
+          </label>
+          <button onClick="{{ goAdd }}" style="flex:none; height:46px; padding:0 15px; border-radius:12px; border:2.5px solid oklch(0.24 0.06 265); background:oklch(0.88 0.15 92); color:oklch(0.24 0.06 265); font:400 15px 'Dela Gothic One', sans-serif; cursor:pointer; box-shadow:3px 3px 0 oklch(0.24 0.06 265)" style-active="transform:translate(2px,2px); box-shadow:1px 1px 0 oklch(0.24 0.06 265)">+ Ajouter</button>
+        </div>
+      </sc-if>
+      <sc-if value="{{ isAdd }}">
+        <button onClick="{{ save }}" style="width:100%; min-height:50px; border-radius:12px; border:2.5px solid oklch(0.24 0.06 265); background:oklch(0.88 0.15 92); color:oklch(0.24 0.06 265); font:400 17px 'Dela Gothic One', sans-serif; cursor:pointer; box-shadow:4px 4px 0 oklch(0.24 0.06 265)" style-active="transform:translate(2px,2px); box-shadow:2px 2px 0 oklch(0.24 0.06 265)">Enregistrer</button>
+      </sc-if>
+      <sc-if value="{{ isDetail }}">
+        <button onClick="{{ goList }}" style="width:100%; min-height:50px; border-radius:12px; border:2.5px solid oklch(0.24 0.06 265); background:oklch(0.99 0.01 90); color:oklch(0.24 0.06 265); font:800 16px 'M PLUS Rounded 1c', sans-serif; cursor:pointer; box-shadow:4px 4px 0 oklch(0.24 0.06 265)">← Retour</button>
+      </sc-if>
+    </div>
+    <div style="height:10px; background:repeating-linear-gradient(-45deg, oklch(0.88 0.15 92) 0 8px, oklch(0.24 0.06 265) 8px 16px); border-top:2.5px solid oklch(0.24 0.06 265); border-bottom:2.5px solid oklch(0.24 0.06 265)"></div>
+  </header>
+
+  <sc-if value="{{ isList }}" hint-placeholder-val="{{ true }}">
+    <div style="flex:none; position:relative; width:100%; max-width:1120px; margin:0 auto; box-sizing:border-box; padding:14px 18px 6px; display:flex; gap:10px">
+      <button onClick="{{ toggleFilter }}" style="flex:none; min-height:44px; padding:0 14px; border-radius:12px; border:2.5px solid oklch(0.24 0.06 265); background:oklch(0.24 0.06 265); color:oklch(0.99 0.01 90); font:800 14px 'M PLUS Rounded 1c', sans-serif; cursor:pointer; display:flex; align-items:center; gap:6px">{{ filterLabel }} <span style="font-size:10px">▼</span></button>
+      <button onClick="{{ cycleSort }}" style="flex:1; min-width:0; min-height:44px; border-radius:12px; border:2.5px solid oklch(0.24 0.06 265); background:oklch(0.99 0.01 90); color:oklch(0.24 0.06 265); font:800 14px 'M PLUS Rounded 1c', sans-serif; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:6px">⇅ Trier <span style="color:oklch(0.52 0.21 27)">· {{ sortLabel }}</span></button>
+      <sc-if value="{{ filterOpen }}">
+        <div role="menu" style="position:absolute; top:64px; left:18px; z-index:6; min-width:200px; padding:6px; border-radius:14px; background:oklch(0.99 0.01 90); border:2.5px solid oklch(0.24 0.06 265); box-shadow:4px 4px 0 oklch(0.24 0.06 265); display:flex; flex-direction:column; gap:2px">
+          <sc-for list="{{ chips }}" as="c" hint-placeholder-count="3">
+            <button onClick="{{ c.onClick }}" style="min-height:44px; padding:0 12px; border:none; border-radius:9px; background:{{ c.bg }}; color:oklch(0.24 0.06 265); font:800 15px 'M PLUS Rounded 1c', sans-serif; cursor:pointer; display:flex; justify-content:space-between; align-items:center">{{ c.label }}<span style="color:oklch(0.52 0.21 27)">{{ c.check }}</span></button>
+          </sc-for>
+        </div>
+      </sc-if>
+    </div>
+    <main style="flex:1; overflow-y:auto; width:100%; max-width:1120px; margin:0 auto; box-sizing:border-box; padding:12px 18px 28px">
+      <sc-if value="{{ showGrid }}" hint-placeholder-val="{{ true }}">
+        <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(320px, 1fr)); gap:16px">
+          <sc-for list="{{ visible }}" as="item" hint-placeholder-count="5">
+            <button onClick="{{ item.open }}" style="all:unset; box-sizing:border-box; cursor:pointer; display:grid; grid-template-columns:95px minmax(0, 1fr); gap:12px; padding:11px; border-radius:16px; background:oklch(0.99 0.01 90); border:{{ item.border }}; box-shadow:4px 4px 0 oklch(0.24 0.06 265)" style-active="transform:translate(2px,2px); box-shadow:2px 2px 0 oklch(0.24 0.06 265)">
+              <div style="position:relative; height:112px; border-radius:10px; overflow:hidden; border:2px solid oklch(0.24 0.06 265); background:{{ item.photoBg }}; display:flex; align-items:center; justify-content:center">
+                <sc-if value="{{ item.hasPhoto }}"><img src="{{ item.photo }}" alt="" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover"></sc-if>
+                <sc-if value="{{ item.noPhoto }}"><span style="font:700 10px 'M PLUS Rounded 1c', sans-serif; background:oklch(0.99 0.01 90); padding:2px 6px; border-radius:5px">photo</span></sc-if>
+              </div>
+              <div style="display:flex; flex-direction:column; gap:6px; min-width:0">
+                <div style="display:flex; gap:6px; align-items:flex-start">
+                  <span style="flex:1; font:400 16px/1.2 'Dela Gothic One', sans-serif; text-wrap:pretty">{{ item.name }}</span>
+                  <sc-if value="{{ item.isNew }}"><span style="flex:none; font:800 11px 'M PLUS Rounded 1c', sans-serif; background:oklch(0.52 0.21 27); color:oklch(0.99 0.01 90); padding:2px 7px; border-radius:999px">NEW!</span></sc-if>
+                </div>
+                <span style="align-self:flex-start; display:flex; align-items:center; gap:5px; padding:3px 10px 3px 4px; border-radius:999px; border:2px solid oklch(0.24 0.06 265); background:{{ item.badgeBg }}; color:{{ item.badgeColor }}; font:800 12px 'M PLUS Rounded 1c', sans-serif"><span style="width:18px; height:18px; border-radius:999px; background:oklch(0.99 0.01 90); color:oklch(0.24 0.06 265); display:flex; align-items:center; justify-content:center; font-size:11px">{{ item.badgeJp }}</span>{{ item.badge }}</span>
+                <span style="font:800 15px 'M PLUS Rounded 1c', sans-serif; color:{{ item.priceColor }}">{{ item.priceLabel }}</span>
+                <span style="font:500 13px/1.35 'M PLUS Rounded 1c', sans-serif; color:oklch(0.42 0.04 265); display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden">{{ item.notesLabel }}</span>
+              </div>
+            </button>
+          </sc-for>
+        </div>
+      </sc-if>
+      <sc-if value="{{ showEmpty }}">
+        <div style="margin:36px auto 0; max-width:300px; display:flex; flex-direction:column; align-items:center; gap:10px; text-align:center">
+          <div style="width:84px; height:84px; border-radius:999px; background:oklch(0.52 0.21 27); border:3px solid oklch(0.24 0.06 265); box-shadow:4px 4px 0 oklch(0.24 0.06 265); color:oklch(0.99 0.01 90); display:flex; align-items:center; justify-content:center; font:400 34px 'Dela Gothic One', sans-serif">空</div>
+          <h2 style="margin:8px 0 0; font:400 21px 'Dela Gothic One', sans-serif">Aucune fiche</h2>
+          <p style="margin:0; font:500 15px/1.5 'M PLUS Rounded 1c', sans-serif; color:oklch(0.42 0.04 265)">Ta collection est vide. Touche « Ajouter » pour créer ta première fiche.</p>
+        </div>
+      </sc-if>
+      <sc-if value="{{ showNoResults }}">
+        <div style="margin:36px auto 0; max-width:300px; display:flex; flex-direction:column; align-items:center; gap:10px; text-align:center">
+          <div style="width:84px; height:84px; border-radius:999px; background:oklch(0.88 0.15 92); border:3px solid oklch(0.24 0.06 265); box-shadow:4px 4px 0 oklch(0.24 0.06 265); display:flex; align-items:center; justify-content:center; font:400 34px 'Dela Gothic One', sans-serif">?</div>
+          <h2 style="margin:8px 0 0; font:400 21px 'Dela Gothic One', sans-serif">Aucun résultat</h2>
+          <p style="margin:0; font:500 15px/1.5 'M PLUS Rounded 1c', sans-serif; color:oklch(0.42 0.04 265)">Rien ne correspond à « {{ query }} »{{ filterHint }}.</p>
+          <button onClick="{{ clearAll }}" style="min-height:44px; padding:0 16px; border-radius:12px; border:2.5px solid oklch(0.24 0.06 265); background:oklch(0.99 0.01 90); color:oklch(0.24 0.06 265); font:800 15px 'M PLUS Rounded 1c', sans-serif; cursor:pointer; box-shadow:3px 3px 0 oklch(0.24 0.06 265)">Effacer la recherche</button>
+        </div>
+      </sc-if>
+    </main>
+  </sc-if>
+
+  <sc-if value="{{ isAdd }}">
+    <main style="flex:1; overflow-y:auto; width:100%; max-width:680px; margin:0 auto; box-sizing:border-box; padding:18px 18px 28px; display:flex; flex-direction:column; gap:14px">
+      <sc-if value="{{ hasErrors }}">
+        <div role="alert" style="padding:11px 14px; border-radius:12px; background:oklch(0.52 0.21 27); color:oklch(0.99 0.01 90); border:2.5px solid oklch(0.24 0.06 265); font:800 15px 'M PLUS Rounded 1c', sans-serif">⚠ {{ errorSummary }}</div>
+      </sc-if>
+      <div style="padding:18px 16px; border-radius:18px; background:oklch(0.99 0.01 90); border:2.5px solid oklch(0.24 0.06 265); box-shadow:5px 5px 0 oklch(0.24 0.06 265); display:flex; flex-direction:column; gap:15px">
+        <input type="file" accept="image/*" ref="{{ fileRef }}" onChange="{{ onFile }}" style="display:none">
+        <sc-if value="{{ formNoPhoto }}">
+          <button onClick="{{ pickPhoto }}" style="align-self:center; width:160px; height:189px; border-radius:14px; border:2.5px dashed oklch(0.24 0.06 265); background:repeating-linear-gradient(-45deg, oklch(0.95 0.03 88) 0 10px, oklch(0.91 0.05 88) 10px 20px); color:oklch(0.24 0.06 265); cursor:pointer; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px">
+            <span style="width:42px; height:42px; border-radius:999px; background:oklch(0.88 0.15 92); border:2.5px solid oklch(0.24 0.06 265); font:400 22px 'Dela Gothic One', sans-serif; display:flex; align-items:center; justify-content:center">+</span>
+            <span style="font:800 14px 'M PLUS Rounded 1c', sans-serif">Ajouter une photo</span>
+          </button>
+        </sc-if>
+        <sc-if value="{{ formHasPhoto }}">
+          <div style="align-self:center; position:relative; width:160px; height:189px; border-radius:14px; overflow:hidden; border:2.5px solid oklch(0.24 0.06 265)"><img src="{{ form.photo }}" alt="" style="width:100%; height:100%; object-fit:cover"><button onClick="{{ pickPhoto }}" style="position:absolute; left:8px; right:8px; bottom:8px; min-height:44px; border-radius:10px; border:2px solid oklch(0.24 0.06 265); background:oklch(0.99 0.01 90); color:oklch(0.24 0.06 265); font:800 13px 'M PLUS Rounded 1c', sans-serif; cursor:pointer">Changer</button></div>
+        </sc-if>
+        <label style="display:flex; flex-direction:column; gap:6px">
+          <span style="font:800 14px 'M PLUS Rounded 1c', sans-serif">Nom <span style="color:oklch(0.52 0.21 27)">*</span></span>
+          <input value="{{ form.name }}" onChange="{{ onName }}" placeholder="Ex. Kai – Legacy" style="height:48px; padding:0 13px; border-radius:11px; border:2.5px solid {{ nameBorder }}; background:oklch(0.97 0.02 88); color:oklch(0.24 0.06 265); font:700 16px 'M PLUS Rounded 1c', sans-serif; outline:none" style-focus="box-shadow:3px 3px 0 oklch(0.88 0.15 92)">
+          <sc-if value="{{ nameError }}"><span style="font:800 14px 'M PLUS Rounded 1c', sans-serif; color:oklch(0.5 0.21 27)">{{ nameError }}</span></sc-if>
+        </label>
+        <label style="display:flex; flex-direction:column; gap:6px">
+          <span style="font:800 14px 'M PLUS Rounded 1c', sans-serif">Numéro / set</span>
+          <input value="{{ form.num }}" onChange="{{ onNum }}" placeholder="Ex. njo123 · 70751" style="height:48px; padding:0 13px; border-radius:11px; border:2.5px solid oklch(0.24 0.06 265); background:oklch(0.97 0.02 88); color:oklch(0.24 0.06 265); font:700 15px 'M PLUS Rounded 1c', sans-serif; outline:none" style-focus="box-shadow:3px 3px 0 oklch(0.88 0.15 92)">
+        </label>
+        <div style="display:grid; grid-template-columns:minmax(0, 0.9fr) minmax(0, 2fr); gap:10px">
+          <label style="display:flex; flex-direction:column; gap:6px; opacity:{{ priceOpacity }}">
+            <span style="font:800 14px 'M PLUS Rounded 1c', sans-serif">Prix CHF</span>
+            <input value="{{ form.price }}" onChange="{{ onPrice }}" disabled="{{ priceDisabled }}" inputMode="decimal" placeholder="0.00" style="height:48px; width:100%; box-sizing:border-box; padding:0 11px; border-radius:11px; border:2.5px solid {{ priceBorder }}; background:oklch(0.97 0.02 88); color:oklch(0.24 0.06 265); font:800 16px 'M PLUS Rounded 1c', sans-serif; outline:none">
+          </label>
+          <div style="display:flex; flex-direction:column; gap:6px">
+            <span style="font:800 14px 'M PLUS Rounded 1c', sans-serif">Statut</span>
+            <div style="display:grid; grid-template-columns:1fr 1fr; height:48px; box-sizing:border-box; border-radius:11px; border:2.5px solid oklch(0.24 0.06 265); overflow:hidden">
+              <button onClick="{{ setVendre }}" style="border:none; border-right:2.5px solid oklch(0.24 0.06 265); background:{{ segVendreBg }}; color:{{ segVendreColor }}; font:800 14px 'M PLUS Rounded 1c', sans-serif; cursor:pointer">À vendre</button>
+              <button onClick="{{ setGardee }}" style="border:none; background:{{ segGardeeBg }}; color:{{ segGardeeColor }}; font:800 14px 'M PLUS Rounded 1c', sans-serif; cursor:pointer">Gardée</button>
+            </div>
+          </div>
+        </div>
+        <sc-if value="{{ priceError }}"><span style="margin-top:-7px; font:800 14px 'M PLUS Rounded 1c', sans-serif; color:oklch(0.5 0.21 27)">{{ priceError }}</span></sc-if>
+        <sc-if value="{{ priceHelp }}"><span style="margin-top:-7px; font:500 13px 'M PLUS Rounded 1c', sans-serif; color:oklch(0.42 0.04 265)">Choisis « À vendre » pour indiquer un prix.</span></sc-if>
+        <label style="display:flex; flex-direction:column; gap:6px">
+          <span style="font:800 14px 'M PLUS Rounded 1c', sans-serif">Notes</span>
+          <textarea value="{{ form.notes }}" onChange="{{ onNotes }}" rows="2" placeholder="État, accessoires, provenance…" style="padding:10px 13px; border-radius:11px; border:2.5px solid oklch(0.24 0.06 265); background:oklch(0.97 0.02 88); color:oklch(0.24 0.06 265); font:500 15px/1.45 'M PLUS Rounded 1c', sans-serif; outline:none; resize:vertical"></textarea>
+        </label>
+      </div>
+      <button onClick="{{ resetForm }}" style="min-height:48px; border-radius:12px; border:2.5px solid oklch(0.24 0.06 265); background:oklch(0.99 0.01 90); color:oklch(0.24 0.06 265); font:800 16px 'M PLUS Rounded 1c', sans-serif; cursor:pointer; box-shadow:3px 3px 0 oklch(0.24 0.06 265)">Réinitialiser</button>
+      <button onClick="{{ goList }}" style="align-self:center; min-height:44px; padding:0 12px; border:none; background:transparent; color:oklch(0.24 0.06 265); font:800 15px 'M PLUS Rounded 1c', sans-serif; cursor:pointer; text-decoration:underline; text-underline-offset:3px">← Retour à la liste</button>
+    </main>
+  </sc-if>
+
+  <sc-if value="{{ isDetail }}">
+    <main style="flex:1; overflow-y:auto; width:100%; max-width:680px; margin:0 auto; box-sizing:border-box; padding:18px 18px 28px; display:flex; flex-direction:column; gap:18px">
+      <div style="padding:16px; border-radius:18px; background:oklch(0.99 0.01 90); border:2.5px solid oklch(0.24 0.06 265); box-shadow:5px 5px 0 oklch(0.24 0.06 265); display:flex; flex-direction:column; gap:14px">
+        <div style="position:relative; height:191px; border-radius:12px; overflow:hidden; border:2.5px solid oklch(0.24 0.06 265); background:{{ sel.photoBg }}; display:flex; align-items:center; justify-content:center">
+          <sc-if value="{{ sel.hasPhoto }}"><img src="{{ sel.photo }}" alt="" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover"></sc-if>
+          <sc-if value="{{ sel.noPhoto }}"><span style="font:700 11px 'M PLUS Rounded 1c', sans-serif; background:oklch(0.99 0.01 90); padding:3px 8px; border-radius:6px">photo minifig</span></sc-if>
+          <span style="position:absolute; top:10px; right:10px; width:46px; height:46px; border-radius:999px; background:{{ sel.badgeBg }}; color:{{ sel.badgeColor }}; border:2.5px solid oklch(0.24 0.06 265); display:flex; align-items:center; justify-content:center; font:400 21px 'Dela Gothic One', sans-serif; transform:rotate(-8deg)">{{ sel.badgeJp }}</span>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:3px">
+          <h2 style="margin:0; font:400 25px/1.15 'Dela Gothic One', sans-serif; text-wrap:pretty">{{ sel.name }}</h2>
+          <span style="font:700 13px 'M PLUS Rounded 1c', sans-serif; color:oklch(0.42 0.04 265)">{{ sel.num }}</span>
+        </div>
+        <span style="align-self:flex-start; padding:6px 14px; border-radius:999px; border:2.5px solid oklch(0.24 0.06 265); background:{{ sel.badgeBg }}; color:{{ sel.badgeColor }}; font:800 15px 'M PLUS Rounded 1c', sans-serif">{{ sel.badge }}</span>
+        <div style="display:flex; justify-content:space-between; align-items:baseline; padding-top:12px; border-top:2.5px dashed oklch(0.24 0.06 265)">
+          <span style="font:800 14px 'M PLUS Rounded 1c', sans-serif">Prix estimé</span>
+          <span style="font:400 21px 'Dela Gothic One', sans-serif; color:{{ sel.priceColor }}">{{ sel.priceLabel }}</span>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:4px; padding-top:12px; border-top:2.5px dashed oklch(0.24 0.06 265)">
+          <span style="font:800 14px 'M PLUS Rounded 1c', sans-serif">Notes</span>
+          <p style="margin:0; font:500 15px/1.5 'M PLUS Rounded 1c', sans-serif">{{ sel.notesLabel }}</p>
+        </div>
+      </div>
+      <button onClick="{{ askDelete }}" style="align-self:center; min-width:160px; min-height:50px; padding:0 22px; border-radius:12px; border:2.5px solid oklch(0.24 0.06 265); background:oklch(0.52 0.21 27); color:oklch(0.99 0.01 90); font:400 16px 'Dela Gothic One', sans-serif; cursor:pointer; box-shadow:4px 4px 0 oklch(0.24 0.06 265)">Supprimer</button>
+    </main>
+  </sc-if>
+
+  <sc-if value="{{ confirm }}">
+    <div onClick="{{ cancelDelete }}" style="position:absolute; inset:0; z-index:10; background:oklch(0.24 0.06 265 / 0.6); display:flex; align-items:center; justify-content:center; padding:18px">
+      <div role="alertdialog" onClick="{{ stop }}" style="width:100%; max-width:420px; padding:20px 18px 18px; border-radius:18px; background:oklch(0.99 0.01 90); border:3px solid oklch(0.24 0.06 265); box-shadow:6px 6px 0 oklch(0.24 0.06 265); display:flex; flex-direction:column; gap:12px">
+        <h3 style="margin:0; font:400 20px/1.25 'Dela Gothic One', sans-serif">Supprimer « {{ sel.name }} » ?</h3>
+        <p style="margin:0; font:500 15px/1.5 'M PLUS Rounded 1c', sans-serif; color:oklch(0.42 0.04 265)">La fiche sera retirée de ta collection. Action irréversible.</p>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:4px">
+          <button onClick="{{ cancelDelete }}" style="min-height:48px; border-radius:12px; border:2.5px solid oklch(0.24 0.06 265); background:oklch(0.99 0.01 90); color:oklch(0.24 0.06 265); font:800 15px 'M PLUS Rounded 1c', sans-serif; cursor:pointer">Annuler</button>
+          <button onClick="{{ doDelete }}" style="min-height:48px; border-radius:12px; border:2.5px solid oklch(0.24 0.06 265); background:oklch(0.52 0.21 27); color:oklch(0.99 0.01 90); font:800 15px 'M PLUS Rounded 1c', sans-serif; cursor:pointer">Oui, supprimer</button>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+  <sc-if value="{{ toast }}">
+    <div role="status" style="position:absolute; left:50%; bottom:24px; transform:translateX(-50%); z-index:5; padding:11px 16px; border-radius:12px; background:oklch(0.24 0.06 265); color:oklch(0.99 0.01 90); border:2.5px solid oklch(0.88 0.15 92); font:800 14px 'M PLUS Rounded 1c', sans-serif; white-space:nowrap">✓ {{ toast }}</div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:393,&quot;height&quot;:852},&quot;initialState&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;default&quot;,&quot;empty&quot;,&quot;noresults&quot;,&quot;filterMenu&quot;,&quot;add&quot;,&quot;filled&quot;,&quot;formError&quot;,&quot;saved&quot;,&quot;detail&quot;,&quot;confirm&quot;],&quot;default&quot;:&quot;default&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  PAL = {
+    vBg: 'oklch(0.52 0.21 27)', vFg: 'oklch(0.99 0.01 90)', gBg: 'oklch(0.84 0.1 150)', gFg: 'oklch(0.24 0.06 265)',
+    priceV: 'oklch(0.5 0.21 27)', priceG: 'oklch(0.42 0.04 265)',
+    segOffBg: 'oklch(0.97 0.02 88)', segOffFg: 'oklch(0.42 0.04 265)',
+    fieldB: 'oklch(0.24 0.06 265)', errB: 'oklch(0.52 0.21 27)',
+    cardB: '2.5px solid oklch(0.24 0.06 265)', newB: '3px solid oklch(0.52 0.21 27)', menuOn: 'oklch(0.93 0.08 92)',
+    photo: h => `repeating-linear-gradient(-45deg, oklch(0.84 0.09 ${h}) 0 9px, oklch(0.78 0.11 ${h}) 9px 18px)`,
+    jp: { list: 'スピンジ・ストック', add: 'しんき とうろく', detail: 'ミニフィグ' }
+  };
+  fileRef = React.createRef();
+  state = this.initial();
+  seed() {
+    return [
+      { id: 1, name: 'Kai – Legacy', num: 'njo491 · 71737', status: 'vendre', price: 12, notes: 'Ninja du feu, épée dorée incluse. Très bon état.', hue: 28 },
+      { id: 2, name: 'Jay – Tournoi', num: 'njo324 · 70643', status: 'gardee', price: null, notes: 'Pièce préférée, à garder.', hue: 245 },
+      { id: 3, name: 'Cole – Core', num: 'njo770 · 71793', status: 'vendre', price: 9.5, notes: 'Légère usure sur le torse.', hue: 60 },
+      { id: 4, name: 'Zane – Titanium', num: 'njo115 · 70736', status: 'gardee', price: null, notes: '', hue: 215 },
+      { id: 5, name: 'Lloyd – Legacy', num: 'njo496 · 71741', status: 'vendre', price: 18, notes: 'Avec cape et katana.', hue: 145 },
+      { id: 6, name: 'Nya – Seabound', num: 'njo712 · 71754', status: 'gardee', price: null, notes: 'Trident manquant.', hue: 190 },
+      { id: 7, name: 'Maître Wu', num: 'njo002 · 2504', status: 'vendre', price: 25, notes: 'Première vague, rare. Bâton inclus.', hue: 85 },
+      { id: 8, name: 'Lord Garmadon', num: 'njo008 · 2505', status: 'gardee', price: null, notes: '', hue: 300 }
+    ];
+  }
+  emptyForm() { return { name: '', num: '', status: 'gardee', price: '', notes: '', photo: null }; }
+  initial() {
+    const k = this.props.initialState || 'default';
+    const s = { screen: 'list', items: this.seed(), query: '', filter: 'tous', filterOpen: false, sort: 0, form: this.emptyForm(), errors: {}, selId: null, confirm: false, toast: null, newId: null };
+    if (k === 'empty') s.items = [];
+    if (k === 'noresults') s.query = 'Pythor';
+    if (k === 'filterMenu') s.filterOpen = true;
+    if (k === 'add') s.screen = 'add';
+    if (k === 'filled') { s.screen = 'add'; s.form = { name: 'Lloyd – Oni', num: 'njo812 · 71765', status: 'vendre', price: '22', notes: 'Neuf, jamais joué. Avec ses deux katanas.', photo: null }; }
+    if (k === 'formError') { s.screen = 'add'; s.form = { ...this.emptyForm(), num: 'njo812', status: 'vendre' }; s.errors = { name: 'Le nom est obligatoire.', price: 'Indique un prix estimé en CHF.' }; }
+    if (k === 'saved') { s.items = [{ id: 99, name: 'Lloyd – Oni', num: 'njo812 · 71765', status: 'vendre', price: 22, notes: 'Neuf, jamais joué. Avec ses deux katanas.', hue: 145 }, ...s.items]; s.newId = 99; s.toast = 'Fiche « Lloyd – Oni » ajoutée'; }
+    if (k === 'detail' || k === 'confirm') { s.screen = 'detail'; s.selId = 1; s.confirm = k === 'confirm'; }
+    return s;
+  }
+  componentWillUnmount() { clearTimeout(this.t); }
+  flash(msg) { clearTimeout(this.t); this.setState({ toast: msg }); this.t = setTimeout(() => this.setState({ toast: null }), 2800); }
+  setForm(p) {
+    this.setState(s => {
+      const errors = { ...s.errors };
+      Object.keys(p).forEach(k => delete errors[k]);
+      if (p.status === 'gardee') delete errors.price;
+      return { form: { ...s.form, ...p }, errors };
+    });
+  }
+  save() {
+    const f = this.state.form, errors = {};
+    if (!f.name.trim()) errors.name = 'Le nom est obligatoire.';
+    let price = null;
+    if (f.status === 'vendre') {
+      const raw = String(f.price).replace(',', '.').trim();
+      price = parseFloat(raw);
+      if (!raw) errors.price = 'Indique un prix estimé en CHF.';
+      else if (isNaN(price) || price <= 0 || !/^\d+(\.\d{1,2})?$/.test(raw)) errors.price = 'Prix invalide (ex. 12.50).';
+    }
+    if (Object.keys(errors).length) return this.setState({ errors });
+    const id = Date.now();
+    const item = { id, name: f.name.trim(), num: f.num.trim(), status: f.status, price, notes: f.notes.trim(), photo: f.photo, hue: Math.floor(Math.random() * 360) };
+    this.setState(s => ({ items: [item, ...s.items], screen: 'list', form: this.emptyForm(), errors: {}, filter: 'tous', query: '', sort: 0, newId: id }));
+    this.flash('Fiche « ' + item.name + ' » ajoutée');
+  }
+  deco(it) {
+    const P = this.PAL, v = it.status === 'vendre', isNew = it.id === this.state.newId;
+    return {
+      ...it,
+      badge: v ? 'À vendre' : 'Gardée', badgeJp: v ? '売' : '蔵',
+      badgeBg: v ? P.vBg : P.gBg, badgeColor: v ? P.vFg : P.gFg,
+      priceLabel: v ? 'CHF ' + Number(it.price).toFixed(2) : 'Dans la collection',
+      priceColor: v ? P.priceV : P.priceG,
+      hasPhoto: !!it.photo, noPhoto: !it.photo,
+      num: it.num || 'Sans numéro', notesLabel: it.notes || 'Aucune note.',
+      photoBg: P.photo(it.hue), isNew, border: isNew ? P.newB : P.cardB, cursor: isNew && P.cursorNew ? P.cursorNew : '', vertJp: v ? (P.vertV || '') : (P.vertG || '')
+    };
+  }
+  renderVals() {
+    const P = this.PAL, s = this.state, f = s.form, e = s.errors;
+    const q = s.query.trim().toLowerCase();
+    let list = s.items.filter(it => (s.filter === 'tous' || it.status === s.filter) && (!q || (it.name + ' ' + (it.num || '')).toLowerCase().includes(q)));
+    if (s.sort === 1) list = [...list].sort((a, b) => a.name.localeCompare(b.name, 'fr'));
+    if (s.sort === 2) list = [...list].sort((a, b) => (b.price ?? -1) - (a.price ?? -1));
+    const n = s.items.length;
+    const chipDefs = [['tous', 'Tous'], ['vendre', 'À vendre'], ['gardee', 'Gardées']];
+    const sel = this.deco(s.items.find(i => i.id === s.selId) || s.items[0] || { name: '', hue: 0, status: 'gardee' });
+    const errCount = Object.keys(e).length, vendre = f.status === 'vendre';
+    return {
+      isList: s.screen === 'list', isAdd: s.screen === 'add', isDetail: s.screen === 'detail',
+      title: { list: 'Spinji Stock', add: 'Ajout', detail: 'Minifig' }[s.screen], titleJp: P.jp[s.screen], sealJp: P.seal ? P.seal[s.screen] : '',
+      countLabel: n + (n > 1 ? ' fiches' : ' fiche'),
+      query: s.query, hasQuery: !!s.query,
+      onQuery: ev => this.setState({ query: ev.target.value }),
+      clearQuery: () => this.setState({ query: '' }),
+      clearAll: () => this.setState({ query: '', filter: 'tous' }),
+      filterHint: s.filter === 'tous' ? '' : (s.filter === 'vendre' ? ' parmi les fiches à vendre' : ' parmi les fiches gardées'),
+      filterOpen: s.filterOpen, filterLabel: chipDefs.find(c => c[0] === s.filter)[1],
+      toggleFilter: () => this.setState({ filterOpen: !s.filterOpen }),
+      chips: chipDefs.map(([k, label]) => ({ label, check: s.filter === k ? '✓' : '', bg: s.filter === k ? P.menuOn : 'transparent', onClick: () => this.setState({ filter: k, filterOpen: false }) })),
+      sortLabel: ['Récents', 'A–Z', 'Prix'][s.sort],
+      cycleSort: () => this.setState({ sort: (s.sort + 1) % 3, filterOpen: false }),
+      visible: list.map(it => ({ ...this.deco(it), open: () => this.setState({ screen: 'detail', selId: it.id, newId: null, filterOpen: false }) })),
+      showGrid: list.length > 0, showEmpty: n === 0, showNoResults: n > 0 && list.length === 0,
+      goAdd: () => this.setState({ screen: 'add', newId: null, filterOpen: false }),
+      goList: () => this.setState({ screen: 'list', errors: {}, confirm: false }),
+      form: f, fileRef: this.fileRef, formHasPhoto: !!f.photo, formNoPhoto: !f.photo,
+      pickPhoto: () => this.fileRef.current && this.fileRef.current.click(),
+      onFile: ev => { const file = ev.target.files && ev.target.files[0]; if (file) this.setForm({ photo: URL.createObjectURL(file) }); },
+      onName: ev => this.setForm({ name: ev.target.value }),
+      onNum: ev => this.setForm({ num: ev.target.value }),
+      onPrice: ev => this.setForm({ price: ev.target.value }),
+      onNotes: ev => this.setForm({ notes: ev.target.value }),
+      setVendre: () => this.setForm({ status: 'vendre' }),
+      setGardee: () => this.setForm({ status: 'gardee' }),
+      isVendre: vendre, priceDisabled: !vendre, priceOpacity: vendre ? 1 : 0.5, priceHelp: !vendre && !e.price,
+      segVendreBg: vendre ? P.vBg : P.segOffBg, segVendreColor: vendre ? P.vFg : P.segOffFg,
+      segGardeeBg: !vendre ? P.gBg : P.segOffBg, segGardeeColor: !vendre ? P.gFg : P.segOffFg,
+      nameError: e.name || '', priceError: e.price || '',
+      nameBorder: e.name ? P.errB : P.fieldB, priceBorder: e.price ? P.errB : P.fieldB,
+      hasErrors: errCount > 0,
+      errorSummary: errCount > 1 ? errCount + ' champs à corriger avant d\'enregistrer.' : '1 champ à corriger avant d\'enregistrer.',
+      resetForm: () => this.setState({ form: this.emptyForm(), errors: {} }),
+      save: () => this.save(),
+      sel, confirm: s.confirm,
+      askDelete: () => this.setState({ confirm: true }),
+      cancelDelete: () => this.setState({ confirm: false }),
+      stop: ev => ev.stopPropagation(),
+      doDelete: () => { const name = sel.name; this.setState(st => ({ items: st.items.filter(i => i.id !== st.selId), confirm: false, screen: 'list', selId: null })); this.flash('Fiche « ' + name + ' » supprimée'); },
+      toast: s.toast
+    };
+  }
+}
+</script>
+</body>
+</html>

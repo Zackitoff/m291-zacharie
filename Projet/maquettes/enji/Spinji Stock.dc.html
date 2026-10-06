@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet><meta name="design_doc_mode" content="canvas"><link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&family=Shippori+Mincho+B1:wght@700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet"><style>body{margin:0;background:#100e0c;font-family:'Zen Maru Gothic',system-ui,sans-serif;color:#eeece6}a{color:#d4b36a}a:hover{color:#f3d98e}.dv-turn{padding:40px 44px 36px;border-bottom:1px solid rgba(255,255,255,.07);scroll-margin-top:16px}.dv-thd{display:flex;align-items:baseline;gap:10px;margin:0 0 6px}.dv-tid{font:600 10px ui-monospace,Menlo,monospace;padding:3px 7px;background:#d4b36a;color:#1a1408;border-radius:4px;text-decoration:none}.dv-tname{font:800 19px/1.2 'Shippori Mincho B1',serif;color:#eeece6}.dv-sub{margin:0 0 22px;font:600 13px/1.5 'Zen Maru Gothic',sans-serif;color:rgba(238,236,230,.6);max-width:760px}.dv-opts{display:flex;flex-wrap:wrap;gap:28px;align-items:flex-start}.dv-opt{flex:none;display:flex;flex-direction:column;gap:9px;scroll-margin-top:16px}.dv-oid{font:600 10.5px ui-monospace,Menlo,monospace;padding:3px 7px;background:rgba(255,255,255,.1);color:#eeece6;border-radius:5px;text-decoration:none}.dv-olabel{display:flex;align-items:baseline;gap:8px;font:700 12px/1.3 'Zen Maru Gothic',sans-serif;color:rgba(238,236,230,.7)}.dv-card{max-width:100%;border:1px solid rgba(255,255,255,.1);border-radius:32px;box-shadow:0 20px 50px rgba(0,0,0,.5);overflow:hidden}.dv-opt:target .dv-oid{background:#d4b36a;color:#1a1408}.dv-arrow{align-self:center;font:900 26px 'Zen Maru Gothic';color:#d4b36a;padding-top:20px}.dv-next{margin:22px 0 0;font:12px/1.5 'Zen Maru Gothic',sans-serif;color:rgba(238,236,230,.5)}</style></helmet>
+<section class="dv-turn" id="t1">
+  <div class="dv-thd"><a class="dv-tid" href="#t1">1</a><span class="dv-tname">Spinji Stock — prototype interactif</span></div>
+  <p class="dv-sub">Entièrement cliquable : recherche, filtres, tri, ajout avec validation et photo réelle, détail, suppression avec confirmation. Disposition alignée sur le wireframe. Style japonais traditionnel : sumi (encre), kin (or) pour l'action principale et « À vendre », matcha pour « Gardée », shu (vermillon) pour le destructif. Titres Shippori Mincho, texte Zen Maru Gothic.</p>
+  <div class="dv-opts">
+    <div class="dv-opt" id="1a"><div class="dv-olabel"><a class="dv-oid" href="#1a">1a</a>Prototype mobile · essaie le flux complet</div><div class="dv-card" style="width:393px;height:852px"><dc-import name="SpinjiApp" initial-state="default" hint-size="393px,852px" style="width:393px;height:852px"></dc-import></div></div>
+  </div>
+</section>
+<section class="dv-turn" id="t2">
+  <div class="dv-thd"><a class="dv-tid" href="#t2">2</a><span class="dv-tname">Flux principal</span></div>
+  <p class="dv-sub">Liste → Ajouter → fiche remplie, statut « À vendre » + prix → Enregistrer → retour à la liste, nouvelle carte en tête avec contour or et confirmation.</p>
+  <div class="dv-opts">
+    <div class="dv-opt" id="2a"><div class="dv-olabel"><a class="dv-oid" href="#2a">2a</a>1 · Liste</div><div class="dv-card" style="width:393px;height:852px"><dc-import name="SpinjiApp" initial-state="default" hint-size="393px,852px" style="width:393px;height:852px"></dc-import></div></div>
+    <div class="dv-arrow">→</div>
+    <div class="dv-opt" id="2b"><div class="dv-olabel"><a class="dv-oid" href="#2b">2b</a>2 · Ajout vide</div><div class="dv-card" style="width:393px;height:852px"><dc-import name="SpinjiApp" initial-state="add" hint-size="393px,852px" style="width:393px;height:852px"></dc-import></div></div>
+    <div class="dv-arrow">→</div>
+    <div class="dv-opt" id="2c"><div class="dv-olabel"><a class="dv-oid" href="#2c">2c</a>3 · Fiche remplie, à vendre</div><div class="dv-card" style="width:393px;height:852px"><dc-import name="SpinjiApp" initial-state="filled" hint-size="393px,852px" style="width:393px;height:852px"></dc-import></div></div>
+    <div class="dv-arrow">→</div>
+    <div class="dv-opt" id="2d"><div class="dv-olabel"><a class="dv-oid" href="#2d">2d</a>4 · Enregistrée, visible dans la liste</div><div class="dv-card" style="width:393px;height:852px"><dc-import name="SpinjiApp" initial-state="saved" hint-size="393px,852px" style="width:393px;height:852px"></dc-import></div></div>
+  </div>
+</section>
+<section class="dv-turn" id="t3">
+  <div class="dv-thd"><a class="dv-tid" href="#t3">3</a><span class="dv-tname">Détail et états clés</span></div>
+  <div class="dv-opts">
+    <div class="dv-opt" id="3a"><div class="dv-olabel"><a class="dv-oid" href="#3a">3a</a>Détail minifig</div><div class="dv-card" style="width:393px;height:852px"><dc-import name="SpinjiApp" initial-state="detail" hint-size="393px,852px" style="width:393px;height:852px"></dc-import></div></div>
+    <div class="dv-opt" id="3b"><div class="dv-olabel"><a class="dv-oid" href="#3b">3b</a>Confirmation de suppression</div><div class="dv-card" style="width:393px;height:852px"><dc-import name="SpinjiApp" initial-state="confirm" hint-size="393px,852px" style="width:393px;height:852px"></dc-import></div></div>
+    <div class="dv-opt" id="3c"><div class="dv-olabel"><a class="dv-oid" href="#3c">3c</a>Formulaire avec erreurs</div><div class="dv-card" style="width:393px;height:852px"><dc-import name="SpinjiApp" initial-state="formError" hint-size="393px,852px" style="width:393px;height:852px"></dc-import></div></div>
+    <div class="dv-opt" id="3f"><div class="dv-olabel"><a class="dv-oid" href="#3f">3f</a>Menu filtre (Tous / À vendre / Gardées)</div><div class="dv-card" style="width:393px;height:852px"><dc-import name="SpinjiApp" initial-state="filterMenu" hint-size="393px,852px" style="width:393px;height:852px"></dc-import></div></div>
+    <div class="dv-opt" id="3d"><div class="dv-olabel"><a class="dv-oid" href="#3d">3d</a>Liste vide</div><div class="dv-card" style="width:393px;height:852px"><dc-import name="SpinjiApp" initial-state="empty" hint-size="393px,852px" style="width:393px;height:852px"></dc-import></div></div>
+    <div class="dv-opt" id="3e"><div class="dv-olabel"><a class="dv-oid" href="#3e">3e</a>Recherche sans résultat</div><div class="dv-card" style="width:393px;height:852px"><dc-import name="SpinjiApp" initial-state="noresults" hint-size="393px,852px" style="width:393px;height:852px"></dc-import></div></div>
+  </div>
+</section>
+<section class="dv-turn" id="t4">
+  <div class="dv-thd"><a class="dv-tid" href="#t4">4</a><span class="dv-tname">Responsive — desktop</span></div>
+  <p class="dv-sub">Même composant : les cartes horizontales passent sur 3 colonnes, contenu centré (max 1120px).</p>
+  <div class="dv-opts">
+    <div class="dv-opt" id="4a"><div class="dv-olabel"><a class="dv-oid" href="#4a">4a</a>Liste · 1280px</div><div class="dv-card" style="width:1280px;height:800px;border-radius:16px"><dc-import name="SpinjiApp" initial-state="default" hint-size="1280px,800px" style="width:1280px;height:800px"></dc-import></div></div>
+  </div>
+  <p class="dv-next">Suite possible : « ajoute les sets en plus des minifigs » · « mode édition d'une fiche »</p>
+</section>
+</x-dc>
+</body>
+</html>
