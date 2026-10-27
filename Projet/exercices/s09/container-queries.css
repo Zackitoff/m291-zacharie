@@ -1,0 +1,32 @@
+/* S09-AV1 — Container Queries (@container)
+   Chaque carte vit dans un conteneur (.carte-conteneur) et choisit sa
+   disposition selon la largeur de CE conteneur, pas celle de la fenêtre. */
+
+.carte-conteneur {
+  container-type: inline-size;
+  container-name: carte;
+}
+
+/* Étroit (< 400px) : disposition verticale, photo au-dessus (par défaut dans style.css) */
+
+/* Large (≥ 400px) : disposition horizontale, photo à gauche */
+@container carte (min-width: 400px) {
+  .carte {
+    display: grid;
+    grid-template-columns: 110px minmax(0, 1fr);
+    align-items: start;
+  }
+
+  .carte-photo {
+    height: 130px;
+    grid-row: span 2;
+  }
+
+  .carte-nom {
+    padding-right: 0;
+  }
+
+  .favori {
+    grid-column: 2;
+  }
+}

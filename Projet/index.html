@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Spinji Stock — Collection Lego Ninjago</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@600;700;800&family=Zen+Kaku+Gothic+New:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="exercices/s09/container-queries.css">
+</head>
+<body data-vue="liste">
+  <header class="entete">
+    <div class="contenu">
+      <div class="titrage">
+        <div class="sceau" id="sceau" lang="ja" aria-hidden="true">蔵</div>
+        <div class="titrage-corps">
+          <p class="titre-jp" lang="ja" id="titre-jp" aria-hidden="true">在庫目録</p>
+          <h1 id="titre-ecran">Spinji Stock</h1>
+        </div>
+        <p class="compteur" id="compteur">0 fiche</p>
+      </div>
+
+      <nav aria-label="Navigation principale">
+        <div class="nav-actions" data-vues="liste">
+          <form class="recherche" role="search" id="form-recherche">
+            <svg width="17" height="17" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><circle cx="8.5" cy="8.5" r="6"></circle><line x1="13" y1="13" x2="18" y2="18"></line></svg>
+            <label for="recherche" class="sr-only">Rechercher une minifig</label>
+            <input type="search" id="recherche" placeholder="Rechercher une minifig" autocomplete="off">
+            <button type="button" class="btn-effacer" id="effacer-recherche" aria-label="Effacer la recherche" hidden>✕</button>
+          </form>
+          <a href="#/ajout" class="btn btn-or">+ Ajouter</a>
+        </div>
+
+        <div data-vues="ajout" hidden>
+          <button type="submit" form="form-fiche" class="btn btn-or btn-pleine" id="btn-enregistrer">Enregistrer</button>
+        </div>
+
+        <div data-vues="fiche" hidden>
+          <a href="#/" class="btn btn-pleine">← Retour</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="contenu">
+    <!-- Écran 1 : liste -->
+    <section id="vue-liste" data-vues="liste" aria-labelledby="titre-ecran">
+      <div class="barre-outils">
+        <button type="button" class="btn btn-filtre" id="btn-filtre" aria-haspopup="true" aria-expanded="false" aria-controls="menu-filtre">
+          <span id="libelle-filtre">Tous</span> <span aria-hidden="true" style="font-size:10px">▾</span>
+        </button>
+        <button type="button" class="btn btn-tri" id="btn-tri">⇅ Trier <span id="libelle-tri">· Récents</span></button>
+        <ul class="menu-filtre" id="menu-filtre" hidden>
+          <li><button type="button" data-filtre="tous" aria-checked="true" role="menuitemradio">Tous <span class="coche" aria-hidden="true">✓</span></button></li>
+          <li><button type="button" data-filtre="vendre" aria-checked="false" role="menuitemradio">À vendre <span class="coche" aria-hidden="true"></span></button></li>
+          <li><button type="button" data-filtre="gardee" aria-checked="false" role="menuitemradio">Gardées <span class="coche" aria-hidden="true"></span></button></li>
+        </ul>
+      </div>
+
+      <ul class="cartes-grille" id="liste-cartes" aria-live="polite"></ul>
+
+      <div class="etat-vide" id="etat-vide" hidden>
+        <div class="kanji" lang="ja" aria-hidden="true">空</div>
+        <h2>Aucune fiche</h2>
+        <p>Ta collection est vide. Touche « Ajouter » pour créer ta première fiche.</p>
+      </div>
+
+      <div class="etat-vide" id="etat-aucun-resultat" hidden>
+        <div class="kanji" lang="ja" aria-hidden="true">無</div>
+        <h2>Aucun résultat</h2>
+        <p id="texte-aucun-resultat"></p>
+        <button type="button" class="btn" id="btn-tout-effacer">Effacer la recherche</button>
+      </div>
+    </section>
+
+    <!-- Écran 2 : ajout / modification -->
+    <section id="vue-ajout" data-vues="ajout" class="vue-etroite" aria-labelledby="titre-ecran" hidden>
+      <p class="resume-erreurs" id="resume-erreurs" role="alert" hidden></p>
+
+      <form id="form-fiche" class="formulaire" novalidate>
+        <input type="file" accept="image/*" id="champ-fichier" hidden>
+        <div class="champ" id="zone-photo"></div>
+
+        <div class="champ">
+          <label for="champ-nom">Nom <span class="requis" aria-hidden="true">*</span></label>
+          <input type="text" id="champ-nom" placeholder="Ex. Kai – Legacy" autocomplete="off" aria-describedby="erreur-nom" required>
+          <span class="erreur" id="erreur-nom" hidden></span>
+        </div>
+
+        <div class="champ">
+          <label for="champ-num">Numéro / set</label>
+          <input type="text" id="champ-num" placeholder="Ex. njo123 · 70751" autocomplete="off">
+        </div>
+
+        <div class="ligne-prix">
+          <div class="champ champ-prix">
+            <label for="champ-prix">Prix CHF</label>
+            <input type="text" id="champ-prix" inputmode="decimal" placeholder="0.00" autocomplete="off" aria-describedby="erreur-prix aide-prix">
+          </div>
+          <fieldset class="champ champ-statut">
+            <legend class="libelle">Statut</legend>
+            <div class="segments">
+              <label><input type="radio" name="statut" value="vendre"> <span lang="ja">売</span> À vendre</label>
+              <label><input type="radio" name="statut" value="gardee" checked> <span lang="ja">蔵</span> Gardée</label>
+            </div>
+          </fieldset>
+        </div>
+        <span class="erreur" id="erreur-prix" hidden></span>
+        <span class="aide" id="aide-prix">Choisis « À vendre » pour indiquer un prix.</span>
+
+        <div class="champ">
+          <label for="champ-notes">Notes</label>
+          <textarea id="champ-notes" rows="2" placeholder="État, accessoires, provenance…"></textarea>
+        </div>
+      </form>
+
+      <button type="button" class="btn btn-pleine" id="btn-reinit">Réinitialiser</button>
+      <a href="#/" class="btn btn-lien">← Retour à la liste</a>
+    </section>
+
+    <!-- Écran 3 : fiche -->
+    <section id="vue-fiche" data-vues="fiche" class="vue-etroite" aria-labelledby="titre-ecran" hidden>
+      <article class="fiche" id="fiche-contenu"></article>
+      <div class="actions-fiche">
+        <a href="#/" class="btn" id="lien-modifier">Modifier</a>
+        <button type="button" class="btn btn-rouge" id="btn-supprimer">Supprimer</button>
+      </div>
+    </section>
+  </main>
+
+  <aside>
+    <dialog id="dialogue-suppression" aria-labelledby="titre-dialogue">
+      <h2 id="titre-dialogue"></h2>
+      <p>La fiche sera retirée de ta collection. Action irréversible.</p>
+      <div class="dialogue-actions">
+        <button type="button" class="btn" id="btn-annuler">Annuler</button>
+        <button type="button" class="btn btn-rouge" id="btn-confirmer">Oui, supprimer</button>
+      </div>
+    </dialog>
+    <p class="toast" id="toast" role="status" hidden></p>
+  </aside>
+
+  <footer class="pied">
+    <p>© 2026 Zacharie · Spinji Stock · données 100 % inventées, stockées localement</p>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

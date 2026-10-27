@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>S09-AV2 — :has() et thème dynamique sans JS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@600;700;800&family=Zen+Kaku+Gothic+New:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../style.css">
+  <style>
+    /* Le parent .carte réagit à l'état de son enfant : aucune ligne de JavaScript. */
+    .carte:has(.toggle-favori:checked) {
+      background: var(--color-favori-bg);
+      border: 2px solid var(--color-primary);
+    }
+
+    .carte:has(.toggle-favori:checked) .favori {
+      color: var(--color-primary);
+    }
+  </style>
+</head>
+<body>
+  <header class="entete">
+    <div class="contenu">
+      <h1>S09-AV2 · :has()</h1>
+    </div>
+  </header>
+
+  <main class="contenu">
+    <p style="padding-top:16px">Coche « Favori » : la carte change de fond et de bordure, sans JavaScript.</p>
+    <ul class="cartes-grille">
+      <li>
+        <article class="carte">
+          <div class="carte-corps">
+            <h2 class="carte-nom">Kai – Legacy</h2>
+            <p class="badge badge-vendre">À vendre</p>
+            <p class="prix prix-vendre">CHF 12.00</p>
+          </div>
+          <label class="favori"><input type="checkbox" class="toggle-favori"> Favori</label>
+        </article>
+      </li>
+      <li>
+        <article class="carte">
+          <div class="carte-corps">
+            <h2 class="carte-nom">Jay – Tournoi</h2>
+            <p class="badge">Gardée</p>
+            <p class="prix">Dans la collection</p>
+          </div>
+          <label class="favori"><input type="checkbox" class="toggle-favori"> Favori</label>
+        </article>
+      </li>
+    </ul>
+  </main>
+</body>
+</html>
