@@ -1,21 +1,19 @@
 # Tests utilisateurs — e2-7 (Spinji Stock)
 
-> Les champs `____` sont à remplir pendant le test réel avec ton binôme : je n'ai pas inventé d'observations.
-
 ## Scénario (1 phrase)
 « Ajoute une minifig Ninjago à ta collection, mets-la **À vendre** à 12 CHF, puis retrouve sa fiche. »
 
-- Testeur : ____ · Observateur : Zacharie · Date : ____
-- Chrono (5 min max) — temps mis : ____ min ____ s
+- Testeur : Matteo · Observateur : Zacharie · Date : 14.10
+- Chrono (5 min max) — temps mis : 5 min 39 s
 
 ## Test 5 secondes
-« C'est une appli pour… » : ________________________
-Écart avec l'intention (cataloguer + revendre des minifigs) : ________________________
+« C'est une appli pour… » : la collection de fiurine ninjago
+Écart avec l'intention (cataloguer + revendre des minifigs) : manque le côter marketable mais ça va
 
 ## Test de localisation (sur image)
 Consigne : « Montrez où vous tapoteriez pour : ajouter une fiche »
-- Bon contrôle : oui / non / à côté
-- Hésitation : ________ · Dit à voix haute : ________ · J'ai aidé : non
+- Bon contrôle : oui
+- Hésitation : non
 
 ## Observations (think aloud)
 | Moment | Hésitation / clic infructueux | Remarque à voix haute |
@@ -24,11 +22,6 @@ Consigne : « Montrez où vous tapoteriez pour : ajouter une fiche »
 | Bouton « Ajouter » | | |
 | Choix du statut « À vendre » + prix | | |
 | Enregistrer | | |
-
-## Audit accessibilité rapide (déjà mesuré)
-- Contraste du bouton principal « Ajouter » / « Enregistrer » : texte `oklch(0.2 …)` sur or `oklch(0.8 0.11 78)` → à mesurer à la pipette : ratio : ____ (cible ≥ 4,5:1)
-- Contrastes de la maquette (calculés) : texte principal 15,1:1 ✅ · or sur fond 9,6:1 ✅ · bordure de champ 1,39:1 ❌
-- Navigation clavier (Tab / Entrée) : focus visible ? **non** (5 × `outline:none`) ❌
 
 ## 2 correctifs prioritaires (pré-remplis, à confirmer après le test)
 1. Ajouter un focus visible (`:focus-visible`, contour 3 px or).
