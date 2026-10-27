@@ -18,15 +18,13 @@ Consigne : « Montrez où vous tapoteriez pour : ajouter une fiche »
 ## Observations (think aloud)
 | Moment | Hésitation / clic infructueux | Remarque à voix haute |
 |--------|-------------------------------|-----------------------|
-| Écran liste | | |
-| Bouton « Ajouter » | | |
-| Choix du statut « À vendre » + prix | | |
-| Enregistrer | | |
+| Écran liste | rapide | non |
+| Bouton « Ajouter » | rapide | non |
+| Choix du statut « À vendre » + prix | rapide | non |
+| Enregistrer | rapide | non |
 
 ## 2 correctifs prioritaires (pré-remplis, à confirmer après le test)
 1. Ajouter un focus visible (`:focus-visible`, contour 3 px or).
 2. Renforcer les bordures des champs (≥ 3:1).
-
-1 changement que je ferai — Avant : ________ · Après (prévu) : ________
 
 **Commit :** `Consigne les résultats du protocole de tests utilisateurs dans design/tests-utilisateurs.md.`
