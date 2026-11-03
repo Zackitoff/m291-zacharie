@@ -1,0 +1,322 @@
+[
+  {
+    "id": 1,
+    "nom": "Kai – Legacy",
+    "numero": "njo491 · 71737",
+    "aVendre": true,
+    "prix": 12,
+    "notes": "Ninja du feu, épée dorée incluse. Très bon état.",
+    "favori": false,
+    "dateAjout": "2026-09-01"
+  },
+  {
+    "id": 2,
+    "nom": "Jay – Tournoi",
+    "numero": "njo324 · 70643",
+    "aVendre": false,
+    "prix": 15,
+    "notes": "Pièce préférée, à garder.",
+    "favori": true,
+    "dateAjout": "2026-09-02"
+  },
+  {
+    "id": 3,
+    "nom": "Cole – Core",
+    "numero": "njo770 · 71793",
+    "aVendre": true,
+    "prix": 9.5,
+    "notes": "Légère usure sur le torse.",
+    "favori": false,
+    "dateAjout": "2026-09-03"
+  },
+  {
+    "id": 4,
+    "nom": "Zane – Titanium",
+    "numero": "njo115 · 70736",
+    "aVendre": false,
+    "prix": 14,
+    "notes": "Complet, jamais sorti de sa boîte.",
+    "favori": false,
+    "dateAjout": "2026-09-04"
+  },
+  {
+    "id": 5,
+    "nom": "Lloyd – Legacy",
+    "numero": "njo496 · 71741",
+    "aVendre": true,
+    "prix": 18,
+    "notes": "Avec cape et katana.",
+    "favori": false,
+    "dateAjout": "2026-09-05"
+  },
+  {
+    "id": 6,
+    "nom": "Nya – Seabound",
+    "numero": "njo712 · 71754",
+    "aVendre": false,
+    "prix": 11,
+    "notes": "Trident manquant.",
+    "favori": false,
+    "dateAjout": "2026-09-06"
+  },
+  {
+    "id": 7,
+    "nom": "Maître Wu",
+    "numero": "njo002 · 2504",
+    "aVendre": true,
+    "prix": 25,
+    "notes": "Première vague, rare. Bâton inclus.",
+    "favori": false,
+    "dateAjout": "2026-09-07"
+  },
+  {
+    "id": 8,
+    "nom": "Lord Garmadon",
+    "numero": "njo008 · 2505",
+    "aVendre": false,
+    "prix": 22,
+    "notes": "Quatre bras, bon état.",
+    "favori": true,
+    "dateAjout": "2026-09-08"
+  },
+  {
+    "id": 9,
+    "nom": "Skylor – Spinjitzu",
+    "numero": "njo203 · 70602",
+    "aVendre": true,
+    "prix": 8,
+    "notes": "Robe un peu pâlie.",
+    "favori": false,
+    "dateAjout": "2026-09-09"
+  },
+  {
+    "id": 10,
+    "nom": "Pixal – Techno",
+    "numero": "njo604 · 70618",
+    "aVendre": false,
+    "prix": 13,
+    "notes": "Casque transparent intact.",
+    "favori": false,
+    "dateAjout": "2026-09-10"
+  },
+  {
+    "id": 11,
+    "nom": "Morro – Fantôme",
+    "numero": "njo155 · 70731",
+    "aVendre": true,
+    "prix": 16.5,
+    "notes": "Translucide, sans jambes de rechange.",
+    "favori": false,
+    "dateAjout": "2026-09-11"
+  },
+  {
+    "id": 12,
+    "nom": "Cole – Possédé",
+    "numero": "njo158 · 70734",
+    "aVendre": true,
+    "prix": 7,
+    "notes": "Doublon, état correct.",
+    "favori": false,
+    "dateAjout": "2026-09-12"
+  },
+  {
+    "id": 13,
+    "nom": "Sensei Yang",
+    "numero": "njo214 · 70752",
+    "aVendre": false,
+    "prix": 20,
+    "notes": "Chapeau rare conservé.",
+    "favori": false,
+    "dateAjout": "2026-09-13"
+  },
+  {
+    "id": 14,
+    "nom": "Samouraï X",
+    "numero": "njo301 · 70641",
+    "aVendre": true,
+    "prix": 19,
+    "notes": "Armure légèrement rayée.",
+    "favori": false,
+    "dateAjout": "2026-09-14"
+  },
+  {
+    "id": 15,
+    "nom": "Pythor",
+    "numero": "njo087 · 9450",
+    "aVendre": true,
+    "prix": 10,
+    "notes": "Serpent complet, neuf.",
+    "favori": false,
+    "dateAjout": "2026-09-15"
+  },
+  {
+    "id": 16,
+    "nom": "Nya – Samouraï X",
+    "numero": "njo302 · 70642",
+    "aVendre": false,
+    "prix": 17,
+    "notes": "Version collector.",
+    "favori": true,
+    "dateAjout": "2026-10-01"
+  },
+  {
+    "id": 17,
+    "nom": "Jay – ZX",
+    "numero": "njo411 · 70751",
+    "aVendre": true,
+    "prix": 6.5,
+    "notes": "Éclairs un peu usés.",
+    "favori": false,
+    "dateAjout": "2026-10-02"
+  },
+  {
+    "id": 18,
+    "nom": "Zane – Nindroïde",
+    "numero": "njo411 · 70737",
+    "aVendre": false,
+    "prix": 12,
+    "notes": "Jamais joué.",
+    "favori": false,
+    "dateAjout": "2026-10-03"
+  },
+  {
+    "id": 19,
+    "nom": "Kai – Possédé",
+    "numero": "njo159 · 70735",
+    "aVendre": true,
+    "prix": 11,
+    "notes": "Cheveux de rechange inclus.",
+    "favori": false,
+    "dateAjout": "2026-10-04"
+  },
+  {
+    "id": 20,
+    "nom": "Cole – Dragon",
+    "numero": "njo532 · 70658",
+    "aVendre": false,
+    "prix": 21,
+    "notes": "Pièce de vitrine.",
+    "favori": false,
+    "dateAjout": "2026-10-05"
+  },
+  {
+    "id": 21,
+    "nom": "Lloyd – Doré",
+    "numero": "njo103 · 70503",
+    "aVendre": true,
+    "prix": 30,
+    "notes": "Version dorée, rare.",
+    "favori": false,
+    "dateAjout": "2026-10-06"
+  },
+  {
+    "id": 22,
+    "nom": "Cyrus Borg",
+    "numero": "njo421 · 70724",
+    "aVendre": true,
+    "prix": 5,
+    "notes": "Doublon, léger jeu aux bras.",
+    "favori": false,
+    "dateAjout": "2026-10-07"
+  },
+  {
+    "id": 23,
+    "nom": "Misako",
+    "numero": "njo204 · 70747",
+    "aVendre": false,
+    "prix": 9,
+    "notes": "Complète.",
+    "favori": false,
+    "dateAjout": "2026-10-08"
+  },
+  {
+    "id": 24,
+    "nom": "Wu – Sensei",
+    "numero": "njo777 · 70749",
+    "aVendre": true,
+    "prix": 14,
+    "notes": "Barbe un peu décollée.",
+    "favori": false,
+    "dateAjout": "2026-10-09"
+  },
+  {
+    "id": 25,
+    "nom": "Sorcier Noir",
+    "numero": "njo603 · 71756",
+    "aVendre": false,
+    "prix": 18,
+    "notes": "Cape tissu neuve.",
+    "favori": false,
+    "dateAjout": "2026-10-10"
+  },
+  {
+    "id": 26,
+    "nom": "Ras & Tras",
+    "numero": "njo205 · 70589",
+    "aVendre": true,
+    "prix": 12.5,
+    "notes": "Serpentine complète.",
+    "favori": false,
+    "dateAjout": "2026-10-11"
+  },
+  {
+    "id": 27,
+    "nom": "Echo Zane",
+    "numero": "njo803 · 71775",
+    "aVendre": false,
+    "prix": 16,
+    "notes": "État neuf.",
+    "favori": false,
+    "dateAjout": "2026-10-12"
+  },
+  {
+    "id": 28,
+    "nom": "Cinder",
+    "numero": "njo907 · 71731",
+    "aVendre": true,
+    "prix": 8.5,
+    "notes": "Tête rayée.",
+    "favori": false,
+    "dateAjout": "2026-10-13"
+  },
+  {
+    "id": 29,
+    "nom": "Harumi",
+    "numero": "njo919 · 71753",
+    "aVendre": true,
+    "prix": 13,
+    "notes": "Éventail manquant.",
+    "favori": false,
+    "dateAjout": "2026-10-14"
+  },
+  {
+    "id": 30,
+    "nom": "Vex",
+    "numero": "njo809 · 71760",
+    "aVendre": false,
+    "prix": 15,
+    "notes": "Pièce préférée du lot.",
+    "favori": false,
+    "dateAjout": "2026-10-15"
+  },
+  {
+    "id": 31,
+    "nom": "Arin",
+    "numero": "njo915 · 71764",
+    "aVendre": true,
+    "prix": 9,
+    "notes": "Doublon du set 71764.",
+    "favori": false,
+    "dateAjout": "2026-11-01"
+  },
+  {
+    "id": 32,
+    "nom": "Dareth",
+    "numero": "njo331 · 70735",
+    "aVendre": false,
+    "prix": 10,
+    "notes": "Karaté jaune, complet.",
+    "favori": false,
+    "dateAjout": "2026-11-02"
+  }
+]
