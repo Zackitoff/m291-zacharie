@@ -491,6 +491,27 @@ main {
   cursor: pointer;
 }
 
+/* ---------- États (chargement, erreur, vide) ---------- */
+.etat-message {
+  margin-top: var(--space-3);
+  text-align: center;
+  font-weight: 700;
+  color: var(--color-text-muted);
+}
+
+.etat-message:empty {
+  display: none;
+}
+
+.etat-message.erreur-chargement {
+  padding: 10px 12px;
+  border-left: 5px solid oklch(0.58 0.2 33);
+  border-radius: var(--radius-btn);
+  background: var(--color-paper);
+  color: var(--color-ink);
+  text-align: left;
+}
+
 /* ---------- États vides ---------- */
 .etat-vide {
   margin: 40px auto 0;
